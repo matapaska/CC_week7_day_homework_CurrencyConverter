@@ -4,14 +4,37 @@
     <meta charset="utf-8">
     <title></title>
     <script src="./js/bundle.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <dir id="app">
-      
-        <h2>Our exchange rates:
-          <span v-for="currency in currencies"> {{currency.rates}}</span>
-        </h2>
+      <div id="excangeInput">
+        <h4>Enter amount in EURO to be exchanged:</h4>
+        <input type="number" v-model.number="exchangeAmount"/>
 
+        <h4>Choose currency to convert into:</h4>
+        <select v-model:selected="selectedCurrency">
+          <option v-for="(name, value) in exchangeRates" v-bind:value="name">{{value}} </option>
+        </select>
+        <h4>You will receive:{{exchangeEuroToCurrency}} in your selected currency.</h4>
+      </div>
+<hr>
+      <div id="excangeInput">
+        <h4>Enter amount to be exchanged into EURO:</h4>
+        <input type="number" v-model.number="exchangeAmountToEuro"/>
+
+        <h4>Choose currency to convert into:</h4>
+        <select v-model:selected="selectedCurrencyToEuro">
+          <option v-for="(name, value) in exchangeRates" v-bind:value="name">{{value}} </option>
+        </select>
+
+        <h4>You will receive:{{exchangeCurrencyToEuro}} EURO.</h4>
+      </div>
+<hr>
+        <h4>Our exchange rates for 1 EURO: </h4>
+        <ul>
+          <li v-for="(value, name) in exchangeRates">{{name}}: {{value}}</li>
+        </ul>
 
       </dir>
 
